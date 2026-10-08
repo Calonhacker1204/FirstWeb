@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebKu - Login & Beranda</title>
+<style>
+• {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Segoe UI', Arial, sans-serif;
+background: #0f0f0f;
+color: #eaeaea;
+line-height: 1.6;
+}
+
+/* ============================
+LOGIN PAGE
+============================ */
+#halamanLogin {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.login-box {
+background: #1a1a1a;
+border: 1px solid #2a2a2a;
+border-radius: 16px;
+padding: 40px 32px;
+width: 100%;
+max-width: 380px;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.login-box h1 {
+font-size: 26px;
+margin-bottom: 8px;
+text-align: center;
+}
+
+.login-box .subtitle {
+text-align: center;
+color: #888;
+font-size: 14px;
+margin-bottom: 28px;
+}
+
+.input-group {
+margin-bottom: 18px;
+}
+
+.input-group label {
+display: block;
+font-size: 13px;
+color: #aaa;
+margin-bottom: 6px;
+}
+
+.input-group input {
+width: 100%;
+padding: 12px 14px;
+background: #0f0f0f;
+border: 1px solid #2a2a2a;
+border-radius: 8px;
+color: #eaeaea;
+font-size: 15px;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+border-color: #4ade80;
+}
+
+.btn-login {
+width: 100%;
+padding: 12px;
+background: #4ade80;
+color: #0f0f0f;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 8px;
+transition: background 0.2s, transform 0.2s;
+}
+
+.btn-login:hover {
+background: #22c55e;
+transform: translateY(-2px);
+}
+
+.pesan {
+text-align: center;
+font-size: 14px;
+margin-top: 16px;
+min-height: 20px;
+}
+
+.pesan.error {
+color: #ef4444;
+}
+
+.pesan.sukses {
+color: #4ade80;
+}
+
+/* ============================
+WEB UTAMA
+============================ */
+#halamanUtama {
+display: none;
+}
+
+/* Navbar */
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 18px 40px;
+background: #1a1a1a;
+border-bottom: 1px solid #2a2a2a;
+position: sticky;
+top: 0;
+z-index: 10;
+}
+
+nav .logo {
+font-weight: bold;
+font-size: 20px;
+color: #4ade80;
+}
+
+nav ul {
+display: flex;
+list-style: none;
+gap: 24px;
+align-items: center;
+}
+
+nav ul li a {
+color: #eaeaea;
+text-decoration: none;
+font-size: 15px;
+transition: color 0.2s;
+}
+
+nav ul li a:hover {
+color: #4ade80;
+}
+
+nav ul li .user-info {
+font-size: 14px;
+color: #4ade80;
+font-weight: bold;
+}
+
+nav ul li .btn-logout {
+padding: 8px 16px;
+background: transparent;
+border: 1px solid #ef4444;
+color: #ef4444;
+border-radius: 6px;
+cursor: pointer;
+font-size: 13px;
+transition: background 0.2s, color 0.2s;
+}
+
+nav ul li .btn-logout:hover {
+background: #ef4444;
+color: #0f0f0f;
+}
+
+/* Hero */
+.hero {
+text-align: center;
+padding: 100px 20px;
+background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+.hero h1 {
+font-size: 44px;
+margin-bottom: 16px;
+}
+
+.hero p {
+font-size: 18px;
+color: #a0a0a0;
+margin-bottom: 28px;
+}
+
+.hero button {
+background: #4ade80;
+color: #0f0f0f;
+border: none;
+padding: 12px 32px;
+font-size: 16px;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+transition: transform 0.2s, background 0.2s;
+}
+
+.hero button:hover {
+background: #22c55e;
+transform: translateY(-2px);
+}
+
+/* Cards */
+.cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 24px;
+padding: 60px 40px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.card {
+background: #1a1a1a;
+border: 1px solid #2a2a2a;
+border-radius: 12px;
+padding: 28px;
+transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+border-color: #4ade80;
+transform: translateY(-4px);
+}
+
+.card h3 {
+margin-bottom: 12px;
+color: #4ade80;
+}
+
+.card p {
+color: #a0a0a0;
+font-size: 15px;
+}
+
+/* Footer */
+footer {
+text-align: center;
+padding: 30px 20px;
+border-top: 1px solid #2a2a2a;
+color: #666;
+font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+nav {
+flex-direction: column;
+gap: 12px;
+padding: 16px 20px;
+}
+
+nav ul {
+gap: 14px;
+}
+
+.hero h1 {
+font-size: 30px;
+}
+
+.cards {
+padding: 40px 20px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================
+HALAMAN LOGIN
+============================ -->
+<div id="halamanLogin">
+<div class="login-box">
+<h1>Login</h1>
+<p class="subtitle">Masuk pakai akun lu</p>
+
+<div class="input-group">
+<label>Username</label>
+<input type="text" id="username" placeholder="Masukin username">
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input type="password" id="password" placeholder="Masukin password">
+</div>
+
+<button class="btn-login" onclick="login()">Masuk</button>
+
+<div class="pesan" id="pesan"></div>
+</div>
+</div>
+
+<!-- ============================
+HALAMAN UTAMA
+============================ -->
+<div id="halamanUtama">
+
+<!-- Navbar -->
+<nav>
+<div class="logo">WebKu</div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Tentang</a></li>
+<li><a href="#">Kontak</a></li>
+<li><span class="user-info" id="userInfoNav"></span></li>
+<li><button class="btn-logout" onclick="logout()">Logout</button></li>
+</ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<h1>Selamat Datang</h1>
+<p>Ini web pertama gue. Simpel, gelap, dan responsive.</p>
+<button onclick="alert('Tombol diklik!')">Klik Gue</button>
+</section>
+
+<!-- Cards -->
+<section class="cards">
+<div class="card">
+<h3>Cepat</h3>
+<p>Web ini ringan, gak pake library berat. HTML dan CSS doang.</p>
+</div>
+<div class="card">
+<h3>Responsive</h3>
+<p>Di HP atau laptop, tampilannya tetap enak dilihat.</p>
+</div>
+<div class="card">
+<h3>Gelap</h3>
+<p>Tema dark mode biar mata gak cepat capek.</p>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+© 2026 WebKu. Dibuat pakai HTML dan CSS.
+</footer>
+
+</div>
+
+<script>
+/* ============================================
+DAFTAR AKUN
+Tambah atau ubah akun di sini.
+Format: { username: "isi", password: "isi" }
+============================================ */
+const daftarAkun = [
+{ username: "admin", password: "admin123" },
+{ username: "user1", password: "pass123" },
+{ username: "adilla", password: "dilla2026" },
+{ username: "aln", password: "2026" }
+ ];
+
+// Fungsi login
+function login() {
+const user = document.getElementById("username").value.trim();
+const pass = document.getElementById("password").value.trim();
+const pesan = document.getElementById("pesan");
+
+if (user === "" || pass === "") {
+pesan.textContent = "Username dan password gak boleh kosong.";
+pesan.className = "pesan error";
+return;
+}
+
+const akunDitemukan = daftarAkun.find(
+a => a.username === user && a.password === pass
+);
+
+if (akunDitemukan) {
+pesan.textContent = "";
+document.getElementById("halamanLogin").style.display = "none";
+document.getElementById("halamanUtama").style.display = "block";
+document.getElementById("userInfoNav").textContent = "Halo, " + akunDitemukan.username;
+} else {
+pesan.textContent = "Username atau password salah.";
+pesan.className = "pesan error";
+}
+}
+
+// Fungsi logout
+function logout() {
+document.getElementById("username").value = "";
+document.getElementById("password").value = "";
+document.getElementById("pesan").textContent = "";
+document.getElementById("halamanUtama").style.display = "none";
+document.getElementById("halamanLogin").style.display = "flex";
+}
+
+// Login pakai Enter
+document.addEventListener("keydown", function (e) {
+const halamanLogin = document.getElementById("halamanLogin");
+if (e.key === "Enter" && halamanLogin.style.display !== "none") {
+login();
+}
+});
+</script>
+
+</body>
+</html>
